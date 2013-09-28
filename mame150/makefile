@@ -329,12 +329,12 @@ BUILD_EXE = $(EXE)
 endif
 
 # compiler, linker and utilities
-AR = @ar
-CC = @gcc
-LD = @g++
+AR = @arm-none-linux-ar
+CC = @arm-none-linux-gcc
+LD = @arm-none-linux-g++
 MD = -mkdir$(EXE)
 RM = @rm -f
-OBJDUMP = @objdump
+OBJDUMP = @arm-none-linux-objdump
 PYTHON = @python
 
 
