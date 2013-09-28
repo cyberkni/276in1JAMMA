@@ -231,6 +231,7 @@ void gp2x_init(int tickspersecond, int bpp, int rate, int bits, int stereo, int 
 #endif
 #endif
 	puts("MAIN!!!!");
+  puts(ROM_PREFIX);
 #if defined(DREAMCAST) && !defined(DEBUG_UAE4ALL)
     irq_set_handler(EXC_USER_BREAK_PRE,&mame4all_dreamcast_handler);
     irq_set_handler(EXC_INSTR_ADDRESS,&mame4all_dreamcast_handler);
@@ -256,14 +257,14 @@ void gp2x_init(int tickspersecond, int bpp, int rate, int bits, int stereo, int 
 #ifndef GP2X_SDLWRAPPER_NODOUBLEBUFFER
 	flags|=SDL_DOUBLEBUF;
 	gp2x_double_buffer=1;
-	gp2x_sdlwrapper_screen=SDL_SetVideoMode(320,240,bpp,flags);
+	gp2x_sdlwrapper_screen=SDL_SetVideoMode(640,480,bpp,flags);
 	gp2x_sdlwrapper_screen_pixels=gp2x_sdlwrapper_screen->pixels;
 #else
 	gp2x_double_buffer=0;
 #ifdef PSP_RES
 	gp2x_sdlwrapper_screen=SDL_SetVideoMode(480,272,16,flags);
 #else
-	gp2x_sdlwrapper_screen=SDL_SetVideoMode(320,240,16,flags);
+	gp2x_sdlwrapper_screen=SDL_SetVideoMode(640,480,16,flags);
 #endif
 	gp2x_sdlwrapper_bpp=bpp;
 	if (bpp==16)
@@ -274,7 +275,7 @@ void gp2x_init(int tickspersecond, int bpp, int rate, int bits, int stereo, int 
 #ifdef PSP_RES
 			gp2x_sdlwrapper_screen_pixels=malloc(480*272*bpp>>3);
 #else
-			gp2x_sdlwrapper_screen_pixels=malloc(320*240*bpp>>3);
+			gp2x_sdlwrapper_screen_pixels=malloc(640*480*bpp>>3);
 #endif
 #ifdef DREAMCAST
 		gp2x_sdlwrapper_screens[0]=(void *)0xA5000000; //gp2x_sdlwrapper_screen->pixels;
