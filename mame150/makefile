@@ -193,7 +193,7 @@ endif
 # uncomment the force the universal DRC to always use the C backend
 # you may need to do this if your target architecture does not have
 # a native backend
-# FORCE_DRC_C_BACKEND = 1
+FORCE_DRC_C_BACKEND = 1
 
 # uncomment next line to build using unix-style libsdl on Mac OS X
 # (vs. the native framework port).  Normal users should not enable this.
@@ -264,7 +264,7 @@ BUILD_MIDILIB = 1
 
 # specify optimization level or leave commented to use the default
 # (default is OPTIMIZE = 3 normally, or OPTIMIZE = 0 with symbols)
-# OPTIMIZE = 3
+OPTIMIZE = 3
 
 
 ###########################################################################
@@ -329,12 +329,12 @@ BUILD_EXE = $(EXE)
 endif
 
 # compiler, linker and utilities
-AR = @arm-none-linux-ar
-CC = @arm-none-linux-gcc
-LD = @arm-none-linux-g++
+AR = @arm-none-linux-gnueabi-ar
+CC = @arm-none-linux-gnueabi-gcc
+LD = @arm-none-linux-gnueabi-g++
 MD = -mkdir$(EXE)
 RM = @rm -f
-OBJDUMP = @arm-none-linux-objdump
+OBJDUMP = @arm-none-linux-gnueabi-objdump
 PYTHON = @python
 
 

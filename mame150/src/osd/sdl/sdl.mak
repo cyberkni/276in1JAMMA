@@ -30,12 +30,12 @@
 
 # uncomment next line to build without OpenGL support
 
-# NO_OPENGL = 1
+NO_OPENGL = 1
 
 # uncomment next line to build without X11 support (TARGETOS=unix only)
 # this also implies, that no debugger will be builtin.
 
-# NO_X11 = 1
+NO_X11 = 1
 
 # uncomment next line to disable XInput support for e.g. multiple lightguns and mice on X11 systems
 # using Wiimote driver (see http://spritesmods.com/?art=wiimote-mamegun for more info)
@@ -67,20 +67,20 @@ USE_DISPATCH_GL = 1
 
 # uncomment the next line to specify where you have installed
 # SDL. Equivalent to the ./configure --prefix=<path>
-# SDL_INSTALL_ROOT = /usr/local/sdl13
+SDL_INSTALL_ROOT = /opt/FriendlyARM/toolschain/4.5.1
 
 # uncomment and change the next line to build the gtk debugger for win32
 # Get what you need here: http://www.gtk.org/download-windows.html
 # GTK_INSTALL_ROOT = y:/couriersud/win/gtk-32
 
 # uncomment to disable the Qt debugger and fall back to a system default
-# NO_USE_QTDEBUG = 1
+NO_USE_QTDEBUG = 1
 
 # uncomment to disable MIDI
-# NO_USE_MIDI = 1
+NO_USE_MIDI = 1
 
 # uncomment to disable implementations based on assembler code
-# NOASM = 1
+NOASM = 1
 
 ###########################################################################
 ##################   END USER-CONFIGURABLE OPTIONS   ######################
@@ -106,7 +106,7 @@ DEFS += -DSDLMAME_SDL2=0
 endif
 
 ifdef NOASM
-DEFS += -DSDLMAME_NOASM
+DEFS += -DSDLMAME_NOASM -DNOASM
 endif
 
 # patch up problems with new zlib
@@ -279,8 +279,8 @@ ifeq ($(PTR64),1)
 CCOMFLAGS += -arch x86_64
 LDFLAGS += -arch x86_64
 else
-CCOMFLAGS += -m32 -arch i386
-LDFLAGS += -m32 -arch i386
+CCOMFLAGS += -mno-thumb-interwork -I/opt/FriendlyARM/toolschain/4.5.1/include
+LDFLAGS += -L/opt/FriendlyARM/toolschain/4.5.1/lib
 endif
 endif   # BIGENDIAN
 
@@ -585,8 +585,8 @@ ifeq ($(PTR64),1)
 CCOMFLAGS += -m64
 LDFLAGS += -m64
 else
-CCOMFLAGS += -m32
-LDFLAGS += -m32
+CCOMFLAGS += -mno-thumb-interwork -I/opt/FriendlyARM/toolschain/4.5.1/include
+LDFLAGS += -L/opt/FriendlyARM/toolschain/4.5.1/lib
 endif
 endif
 
